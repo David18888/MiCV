@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="view" prefHeight="336.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView fx:id="formacionTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="desdeColumn" prefWidth="75.0" text="Desde" />
+          <TableColumn fx:id="hastaColumn" prefWidth="75.0" text="Hasta" />
+            <TableColumn fx:id="denominacionColumn" prefWidth="89.5999755859375" text="Denominación" />
+            <TableColumn fx:id="organizadorColumn" prefWidth="84.00001525878906" text="Organizador" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <right>
+      <VBox prefHeight="337.0" prefWidth="68.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="addFButton" mnemonicParsing="false" prefWidth="60.0" text="Añadir">
+               <VBox.margin>
+                  <Insets right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="removeFButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Eliminar" />
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
