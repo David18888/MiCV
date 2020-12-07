@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import dad.javafx.micv.model.Experiencia;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -214,11 +215,15 @@ private void onExperienciaChanged(ObservableValue<? extends ObservableList<Exper
 			
 			experienciaTable.itemsProperty().unbind();
 			experienciaObj.unbind();
+			removeExpButton.disableProperty().unbind();
+			
+			removeExpButton.disableProperty().unbind();
 		}
 		
 		if(nv!=null) {
 			experienciaTable.itemsProperty().bind(experiencia);		
 			experienciaObj.bind(experienciaTable.getSelectionModel().selectedItemProperty());
+			removeExpButton.disableProperty().bind(Bindings.isEmpty(experienciaTable.getItems()));
 		}
 
 }

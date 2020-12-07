@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import dad.javafx.micv.model.Titulo;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -213,13 +214,15 @@ public class FormacionController implements Initializable  {
 		if(ov!=null) {
 			formacionTable.itemsProperty().unbindBidirectional(titulos);
 			tituloObj.unbind();
+			
+			removeFButton.disableProperty().unbind();
 		}
 		
 		if(nv!=null) {
 			
 		formacionTable.itemsProperty().bindBidirectional(titulos);
 		tituloObj.bind(formacionTable.getSelectionModel().selectedItemProperty());	
-			
+		removeFButton.disableProperty().bind(Bindings.isEmpty(formacionTable.getItems()));	
 		}
 		
 	}

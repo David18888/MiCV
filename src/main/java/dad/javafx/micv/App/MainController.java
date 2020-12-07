@@ -15,6 +15,7 @@ import dad.javafx.micv.controller.ExperienciaController;
 import dad.javafx.micv.controller.FormacionController;
 import dad.javafx.micv.controller.PersonalController;
 import dad.javafx.micv.utils.JSONUtils;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -26,10 +27,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Popup;
+import javafx.util.Duration;
 
 public class MainController implements Initializable {
 	
@@ -44,7 +48,7 @@ public class MainController implements Initializable {
 	// model
 	
 	private ObjectProperty<CV> cv = new SimpleObjectProperty<>();
-	
+	private File actualFile;
 	// view
 	
     @FXML
@@ -80,6 +84,8 @@ public class MainController implements Initializable {
 		experienciaTab.setContent(experienciaController.getView());
 		conocimientosTab.setContent(conocimientosController.getView());
 		
+		
+		 actualFile=null;
 		cv.addListener((o, ov, nv) -> onCVChanged(o, ov, nv));
 		
 		cv.set(new CV());
@@ -116,14 +122,14 @@ public class MainController implements Initializable {
     	fileChooser.setTitle("Abrir un currículum");
     	fileChooser.getExtensionFilters().add(new ExtensionFilter("Currículum (*.cv)", "*.cv"));
     	fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos (*.*)", "*.*"));
-    	File cvFile = fileChooser.showOpenDialog(App.getPrimaryStage());
-    	if (cvFile != null) {
+    	 actualFile = fileChooser.showOpenDialog(App.getPrimaryStage());
+    	if (actualFile != null) {
     		
     		try {
-    			cv.set(JSONUtils.fromJson(cvFile, CV.class));
-    			App.info("Se ha abierto el fichero " + cvFile.getName() + " correctamente.", "Pues eso...");
+    			cv.set(JSONUtils.fromJson(actualFile, CV.class));
+    			App.info("Se ha abierto el fichero " + actualFile.getName() + " correctamente.", "Pues eso...");
 			} catch (JsonSyntaxException|IOException e) {
-				App.error("Ha ocurrido un error al abrir " + cvFile, e.getMessage());
+				App.error("Ha ocurrido un error al abrir " + actualFile, e.getMessage());
 			}
     		
     	}
@@ -153,6 +159,39 @@ public class MainController implements Initializable {
 
     @FXML
     void onGuardarAction(ActionEvent event) {
+    	if(actualFile==null) {
+    		onGuardarComoAction(event);
+    	}else {
+    		try {
+    			JSONUtils.toJson(actualFile, cv.get());
+    			System.out.println("Fichero guardado correctamente");
+    			
+    			Popup popup = new Popup();
+		        popup.setAutoHide(true);
+		        popup.setAutoFix(true);
+		        Label popupLabel = new Label("Se ha guardado el archivo correctamente");
+		        popup.getContent().add(popupLabel);
+		        popupLabel.setStyle("-fx-background-color:black;"
+		                + " -fx-text-fill: white;" 
+		                + " -fx-font-size:15px;"
+		                + " -fx-padding: 10px;"
+		                + " -fx-background-radius: 6;");
+		        
+		        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+		        delay.setOnFinished(e -> popup.hide());
+		        
+		        
+		        popup.show(App.getPrimaryStage());
+		        delay.play();
+    			
+    			
+    			
+    			
+    		}catch(JsonSyntaxException|IOException e) {
+    			App.error("Ha ocurrido un error al guardar el fichero", e.getMessage());
+    		}
+    	}
+    	
 
     }
 
@@ -168,6 +207,24 @@ public class MainController implements Initializable {
 
 	    		try {
 	    			JSONUtils.toJson(cvFile, cv.get());
+	    			
+	    				Popup popup = new Popup();
+	    		        popup.setAutoHide(true);
+	    		        popup.setAutoFix(true);
+	    		        Label popupLabel = new Label("Se ha guardado el archivo");
+	    		        popup.getContent().add(popupLabel);
+	    		        popupLabel.setStyle("-fx-background-color:black;"
+	    		                + " -fx-text-fill: white;" 
+	    		                + " -fx-font-size:15px;"
+	    		                + " -fx-padding: 10px;"
+	    		                + " -fx-background-radius: 6;");
+	    		        
+	    		        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+	    		        delay.setOnFinished(e -> popup.hide());
+	    		        
+	    		        
+	    		        popup.show(App.getPrimaryStage());
+	    		        delay.play();
 				} catch (JsonSyntaxException|IOException e) {
 					App.error("Ha ocurrido un error al guardar " + cvFile, e.getMessage());
 				}
@@ -180,6 +237,7 @@ public class MainController implements Initializable {
     void onNuevoAction(ActionEvent event) {
     	System.out.println("Nuevo");
     	cv.set(new CV());
+    	actualFile=null;
     }
     
 }

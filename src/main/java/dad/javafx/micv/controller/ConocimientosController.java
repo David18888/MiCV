@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import dad.javafx.micv.model.*;
 import dad.javafx.micv.model.Conocimiento.Nivel;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -262,11 +263,15 @@ private void onConocimientoChanged(ObservableValue<? extends ObservableList<Cono
 	if(ov!=null) {
 		conocimientosTable.itemsProperty().unbind();
 		conocimientoObj.unbind();
+		removeConButton.disableProperty().unbind();
+		
+		removeConButton.disableProperty().unbind();
 	}
 	if(nv!=null) {
 		conocimientosTable.itemsProperty().bind(conocimiento);
 		conocimientoObj.bind(conocimientosTable.getSelectionModel().selectedItemProperty());
 		
+		removeConButton.disableProperty().bind(Bindings.isEmpty(conocimientosTable.getItems()));
 	}
 	
 	}

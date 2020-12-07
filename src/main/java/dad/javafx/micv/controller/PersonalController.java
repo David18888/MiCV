@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 import dad.javafx.micv.model.Nacionalidad;
 import dad.javafx.micv.model.Personal;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -190,6 +191,8 @@ public class PersonalController implements Initializable {
 			localidadText.textProperty().unbindBidirectional(ov.localidadProperty());
 			paisCombo.valueProperty().unbindBidirectional(ov.paisProperty());
 			nacionalidadView.itemsProperty().unbindBidirectional(ov.nacionalidadesProperty());
+			
+			removeNacButton.disableProperty().unbind();
 		
 		}
 
@@ -203,6 +206,9 @@ public class PersonalController implements Initializable {
 			localidadText.textProperty().bindBidirectional(nv.localidadProperty());
 			paisCombo.valueProperty().bindBidirectional(nv.paisProperty());
 			nacionalidadView.itemsProperty().bindBidirectional(nv.nacionalidadesProperty());
+			
+			
+			removeNacButton.disableProperty().bind(Bindings.isEmpty(nacionalidadView.getItems()));
 		}
 		
 	}

@@ -141,6 +141,8 @@ public class ContactoController implements Initializable {
 		removeWebButton.setOnAction(e->onRemoveWebAction());
 		
 		
+	
+		
 		this.contacto.addListener((o, ov, nv) -> onContactoChanged(o, ov, nv));
 		
 	}
@@ -338,6 +340,10 @@ Dialog<Pair<String, TipoTelefono>> dialog = new Dialog<>();
 			email.unbind();
 			url.unbind();
 			
+			removeTlfButton.disableProperty().unbind();
+			removeWebButton.disableProperty().unbind();
+			removeEmailButton.disableProperty().unbind();
+			
 			
 		}
 		
@@ -350,6 +356,11 @@ Dialog<Pair<String, TipoTelefono>> dialog = new Dialog<>();
 		telefono.bind(telefonosTable.getSelectionModel().selectedItemProperty());
 		email.bind(emailTable.getSelectionModel().selectedItemProperty());
 		url.bind(urlTable.getSelectionModel().selectedItemProperty());
+		
+		removeTlfButton.disableProperty().bind(Bindings.isEmpty(telefonosTable.getItems()));
+		removeWebButton.disableProperty().bind(Bindings.isEmpty(urlTable.getItems()));
+		removeEmailButton.disableProperty().bind(Bindings.isEmpty(emailTable.getItems()));
+		
 		}
 	}
 
