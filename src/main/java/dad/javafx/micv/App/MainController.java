@@ -202,16 +202,16 @@ public class MainController implements Initializable {
 	    	fileChooser.setTitle("Guardar un currículum");
 	    	fileChooser.getExtensionFilters().add(new ExtensionFilter("Currículum (*.cv)", "*.cv"));
 	    	fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos (*.*)", "*.*"));
-	    	File cvFile = fileChooser.showSaveDialog(App.getPrimaryStage());
-	    	if (cvFile != null) {
+	    	 actualFile = fileChooser.showSaveDialog(App.getPrimaryStage());
+	    	if (actualFile != null) {
 
 	    		try {
-	    			JSONUtils.toJson(cvFile, cv.get());
+	    			JSONUtils.toJson(actualFile, cv.get());
 	    			
 	    				Popup popup = new Popup();
 	    		        popup.setAutoHide(true);
 	    		        popup.setAutoFix(true);
-	    		        Label popupLabel = new Label("Se ha guardado el archivo");
+	    		        Label popupLabel = new Label("Se ha guardado el archivo correctamente");
 	    		        popup.getContent().add(popupLabel);
 	    		        popupLabel.setStyle("-fx-background-color:black;"
 	    		                + " -fx-text-fill: white;" 
@@ -226,7 +226,7 @@ public class MainController implements Initializable {
 	    		        popup.show(App.getPrimaryStage());
 	    		        delay.play();
 				} catch (JsonSyntaxException|IOException e) {
-					App.error("Ha ocurrido un error al guardar " + cvFile, e.getMessage());
+					App.error("Ha ocurrido un error al guardar " + actualFile, e.getMessage());
 				}
 	    		
 	    	}

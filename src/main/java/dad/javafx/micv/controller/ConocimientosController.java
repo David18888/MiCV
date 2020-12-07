@@ -70,7 +70,7 @@ public class ConocimientosController implements Initializable{
 		private ListProperty<Conocimiento> conocimiento = new SimpleListProperty<>(FXCollections.observableArrayList());
 		private ObjectProperty<Conocimiento> conocimientoObj = new SimpleObjectProperty<>();
 	
-	public ConocimientosController() throws IOException {
+		public ConocimientosController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ConocimientosView.fxml"));
 		loader.setController(this);
 		loader.load();
