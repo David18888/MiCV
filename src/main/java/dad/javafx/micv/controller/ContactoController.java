@@ -226,8 +226,9 @@ public class ContactoController implements Initializable {
 		
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()) {
-			Web web = new Web(result.get());
-			getContacto().websProperty().add(web);
+			Web addWeb = new Web();
+			addWeb.setUrl(result.get());
+			getContacto().websProperty().add(addWeb);
 		}
 		
 		
@@ -249,8 +250,9 @@ public class ContactoController implements Initializable {
 	
 	Optional<String> result = dialog.showAndWait();
 	if (result.isPresent()) {
-		Email email = new Email(result.get());
-		getContacto().emailsProperty().add(email);
+		Email addEmail = new Email();
+		addEmail.setDireccion(result.get());
+		getContacto().emailsProperty().add(addEmail);
 	}
 	
 	}

@@ -116,9 +116,11 @@ public class PersonalController implements Initializable {
 		add.setSelectedItem(nacionalidadesList.get(57));
 		
 		
-		Optional <String> respuesta= add.showAndWait();
-		if(respuesta.isPresent() && !respuesta.isEmpty()) {
-			getPersonal().nacionalidadesProperty().add(new Nacionalidad(respuesta.get()));
+		Optional <String> result= add.showAndWait();
+		if(result.isPresent() && !result.isEmpty()) {
+			Nacionalidad addNacionalidad= new Nacionalidad();
+			addNacionalidad.setDenominacion(result.get());
+			getPersonal().nacionalidadesProperty().add(addNacionalidad);
 		}
 		
 		
