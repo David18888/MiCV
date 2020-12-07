@@ -15,17 +15,7 @@ public class Experiencia {
 	private ObjectProperty <LocalDate>hasta= new SimpleObjectProperty<LocalDate>();
 	private StringProperty denominacion= new SimpleStringProperty();
 	private StringProperty empleador= new SimpleStringProperty();
-	
-	public Experiencia() {}
-	
-	public Experiencia(LocalDate desde, LocalDate hasta, String denominacion,String empleador) {
-		
-		this.desde.set(desde);
-		this.hasta.set(hasta);
-		this.denominacion.set(denominacion);
-		this.empleador.set(empleador);
-		
-	}
+
 	
 	
 	

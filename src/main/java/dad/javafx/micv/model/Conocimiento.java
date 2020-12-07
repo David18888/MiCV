@@ -20,12 +20,6 @@ public enum Nivel{
 	AVANZADO
 }
 
-public Conocimiento() {}
-
-public Conocimiento(String denominacion, Nivel nivel) {
-	this.denominacion.set(denominacion);
-	this.nivel.set(nivel);
-}
 
 
 public final StringProperty denominacionProperty() {

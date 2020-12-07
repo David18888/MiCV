@@ -129,9 +129,9 @@ public class ContactoController implements Initializable {
 		URLColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		
 		
-		this.contacto.addListener((o,ov,nv)->onContactoChanged(o,ov,nv));
+	
 		
-		/*addTlfButton.setOnAction(e->onAddtlfAction());
+		addTlfButton.setOnAction(e->onAddtlfAction());
 		addEmailButton.setOnAction(e->onAddEmailAction());
 		addWebButton.setOnAction(e->onAddWebAction());
 		
@@ -139,15 +139,16 @@ public class ContactoController implements Initializable {
 		removeTlfButton.setOnAction(e->onRemovetlfAction());
 		removeEmailButton.setOnAction(e->onRemoveEmailAction());
 		removeWebButton.setOnAction(e->onRemoveWebAction());
-		*/
+		
+		
+		this.contacto.addListener((o, ov, nv) -> onContactoChanged(o, ov, nv));
+		
 	}
 	
 	
+
 	
-	
-	
-	@FXML
-	private void  onRemoveTlfAction() {
+	private void  onRemovetlfAction() {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Borrar teléfono");
@@ -158,7 +159,7 @@ public class ContactoController implements Initializable {
 		
 		if (result.get() == ButtonType.OK){
 			Telefono borraTelefono= telefono.get();
-			contacto.get().getTelefonos().remove(borraTelefono);
+			getContacto().getTelefonos().remove(borraTelefono);
 		} 
 		
 		
@@ -167,7 +168,7 @@ public class ContactoController implements Initializable {
 	}
 
 
-@FXML
+
 	private void onRemoveEmailAction() {
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -179,14 +180,14 @@ public class ContactoController implements Initializable {
 		
 		if (result.get() == ButtonType.OK){
 			Email borraEmail= email.get();
-			contacto.get().getEmails().remove(borraEmail);
+			getContacto().getEmails().remove(borraEmail);
 		} 
 		
 		
 	}
 
 
-@FXML
+
 	private void onRemoveWebAction() {
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -198,12 +199,12 @@ public class ContactoController implements Initializable {
 		
 		if (result.get() == ButtonType.OK){
 			Web borraWeb= url.get();
-			contacto.get().getWebs().remove(borraWeb);
+			getContacto().getWebs().remove(borraWeb);
 		} 
 	}
 
 
-@FXML
+
 	private void onAddWebAction() {
 		TextInputDialog dialog = new TextInputDialog();
 		
@@ -226,12 +227,12 @@ public class ContactoController implements Initializable {
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()) {
 			Web web = new Web(result.get());
-			contacto.get().websProperty().add(web);
+			getContacto().websProperty().add(web);
 		}
 		
 		
 	}
-	@FXML
+	
 	private void onAddEmailAction() {
 	TextInputDialog dialog= new TextInputDialog();
 	dialog.setTitle("Nuevo e-mail");
@@ -249,13 +250,13 @@ public class ContactoController implements Initializable {
 	Optional<String> result = dialog.showAndWait();
 	if (result.isPresent()) {
 		Email email = new Email(result.get());
-		contacto.get().emailsProperty().add(email);
+		getContacto().emailsProperty().add(email);
 	}
 	
 	}
 
-@FXML
-	private void onAddtlfAction() {
+
+private void onAddtlfAction() {
 Dialog<Pair<String, TipoTelefono>> dialog = new Dialog<>();
 		
 		dialog.setTitle("Nuevo teléfono");
@@ -311,7 +312,7 @@ Dialog<Pair<String, TipoTelefono>> dialog = new Dialog<>();
 			Telefono addTelefono= new Telefono();
 			addTelefono.setNumero(result.get().getKey());
 			addTelefono.setTipo(result.get().getValue());
-			contacto.get().getTelefonos().add(addTelefono);
+			getContacto().getTelefonos().add(addTelefono);
 		}
 		
 		
@@ -327,35 +328,26 @@ Dialog<Pair<String, TipoTelefono>> dialog = new Dialog<>();
 	private void onContactoChanged(ObservableValue<? extends Contacto> o, Contacto ov, Contacto nv) {
 		if(ov!=null) {
 			
-			telefonosTable.itemsProperty().unbind();
-			emailTable.itemsProperty().unbind();
-			urlTable.itemsProperty().unbind();
-			removeTlfButton.disableProperty().unbind();
-			removeEmailButton.disableProperty().unbind();
-			removeWebButton.disableProperty().unbind();
-			
+			telefonosTable.itemsProperty().unbindBidirectional(ov.telefonosProperty());
+			emailTable.itemsProperty().unbindBidirectional(ov.emailsProperty());
+			urlTable.itemsProperty().unbindBidirectional(ov.websProperty());
 			
 			telefono.unbind();
 			email.unbind();
 			url.unbind();
 			
 			
-			
 		}
 		
 		
 		if (nv != null) {
-			telefonosTable.itemsProperty().bind(nv.telefonosProperty());
-			emailTable.itemsProperty().bind(nv.emailsProperty());
-			urlTable.itemsProperty().bind(nv.websProperty());
-			removeTlfButton.disableProperty().bind(Bindings.isEmpty(telefonosTable.getItems()));
-			removeEmailButton.disableProperty().bind(Bindings.isEmpty(emailTable.getItems()));
-			removeWebButton.disableProperty().bind(Bindings.isEmpty(urlTable.getItems()));
-			
-			telefono.bind(telefonosTable.getSelectionModel().selectedItemProperty());
-			email.bind(emailTable.getSelectionModel().selectedItemProperty());
-			url.bind(urlTable.getSelectionModel().selectedItemProperty());
+		Bindings.bindBidirectional(telefonosTable.itemsProperty(),nv.telefonosProperty());
+		Bindings.bindBidirectional(emailTable.itemsProperty(), nv.emailsProperty());
+		Bindings.bindBidirectional(urlTable.itemsProperty(),nv.websProperty());
 		
+		telefono.bind(telefonosTable.getSelectionModel().selectedItemProperty());
+		email.bind(emailTable.getSelectionModel().selectedItemProperty());
+		url.bind(urlTable.getSelectionModel().selectedItemProperty());
 		}
 	}
 

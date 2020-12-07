@@ -21,14 +21,6 @@ public enum TipoTelefono{
 
 
 
-public Telefono() {}
-
-public Telefono(String numero, TipoTelefono tipo) {
-	this.numero.set(numero);
-	this.tipo.set(tipo);
-	
-}
-
 public final StringProperty numeroProperty() {
 	return this.numero;
 }

@@ -89,12 +89,18 @@ public class MainController implements Initializable {
 
 		if (ov != null) {
 			personalController.personalProperty().unbind();
-	
+			contactoController.contactoProperty().unbind();
+			formacionController.titulosProperty().unbind();
+			experienciaController.experienciaProperty().unbind();
+			conocimientosController.conocimientoProperty().unbind();
 		}
 		
 		if (nv != null) {
 			personalController.personalProperty().bind(nv.personalProperty());
-			// TODO bindear el resto de controladores
+			contactoController.contactoProperty().bind(nv.contactoProperty());
+			formacionController.titulosProperty().bind(nv.formacionProperty());
+			experienciaController.experienciaProperty().bind(nv.experienciaProperty());
+			conocimientosController.conocimientoProperty().bind(nv.habilidadesProperty());
 		}
 		
 	}

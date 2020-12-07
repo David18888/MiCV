@@ -16,14 +16,6 @@ private StringProperty organizador= new SimpleStringProperty();
 
 
 
-public Titulo() {}
-
-public Titulo(LocalDate desde, LocalDate hasta, String denominacion, String organizador) {
-	this.desde.set(desde);
-	this.hasta.set(hasta);
-	this.denominacion.set(denominacion);
-	this.organizador.set(organizador);
-}
 
 
 public final ObjectProperty<LocalDate> desdeProperty() {

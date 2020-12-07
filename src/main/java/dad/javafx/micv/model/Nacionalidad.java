@@ -6,11 +6,7 @@ import javafx.beans.property.StringProperty;
 public class Nacionalidad {
 	private StringProperty denominacion = new SimpleStringProperty();
 	
-	public Nacionalidad() {}
-	
-	public Nacionalidad(String denominacion) {
-		setDenominacion(denominacion);
-	}
+
 
 	public final StringProperty denominacionProperty() {
 		return this.denominacion;

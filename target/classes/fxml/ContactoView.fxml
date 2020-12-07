@@ -18,7 +18,7 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView fx:id="telefonosTable" prefHeight="88.0" prefWidth="454.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="telefonosTable" editable="true" prefHeight="88.0" prefWidth="454.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="numeroColumn" prefWidth="111.20000517368317" text="Número" />
                       <TableColumn fx:id="tipoColumn" prefWidth="102.40007781982422" text="Tipo" />
@@ -28,8 +28,8 @@
                <right>
                   <VBox prefHeight="79.0" prefWidth="68.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="addTlfButton" mnemonicParsing="false" onAction="#onAddtlfAction" prefHeight="26.0" prefWidth="58.0" text="Añadir" />
-                        <Button fx:id="removeTlfButton" mnemonicParsing="false" onAction="#onRemoveTlfAction" text="Eliminar" />
+                        <Button fx:id="addTlfButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Añadir" />
+                        <Button fx:id="removeTlfButton" mnemonicParsing="false" text="Eliminar" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" />
@@ -46,7 +46,7 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView fx:id="emailTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="emailTable" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="emailColumn" prefWidth="235.99992430210114" text="E-mail" />
                     </columns>
@@ -55,8 +55,8 @@
                <right>
                   <VBox prefHeight="53.0" prefWidth="71.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="addEmailButton" mnemonicParsing="false" onAction="#onAddEmailAction" prefHeight="26.0" prefWidth="58.0" text="Añadir" />
-                        <Button fx:id="removeEmailButton" mnemonicParsing="false" onAction="#onRemoveEmailAction" text="Eliminar" />
+                        <Button fx:id="addEmailButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Añadir" />
+                        <Button fx:id="removeEmailButton" mnemonicParsing="false" text="Eliminar" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" />
@@ -73,7 +73,7 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView fx:id="urlTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <TableView fx:id="urlTable" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn fx:id="URLColumn" prefWidth="234.40000975131989" text="URL" />
                     </columns>
@@ -82,8 +82,8 @@
                <right>
                   <VBox prefHeight="74.0" prefWidth="71.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="addWebButton" mnemonicParsing="false" onAction="#onAddWebAction" prefHeight="26.0" prefWidth="57.0" text="Añadir" />
-                        <Button fx:id="removeWebButton" mnemonicParsing="false" onAction="#onRemoveWebAction" text="Eliminar" />
+                        <Button fx:id="addWebButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Añadir" />
+                        <Button fx:id="removeWebButton" mnemonicParsing="false" text="Eliminar" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

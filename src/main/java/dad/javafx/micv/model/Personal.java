@@ -1,7 +1,7 @@
 package dad.javafx.micv.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
@@ -25,20 +25,7 @@ public class Personal {
 	private ListProperty<Nacionalidad> nacionalidades = new SimpleListProperty<Nacionalidad>(
 			FXCollections.observableArrayList());
 
-	
-	public Personal() {}
-	public Personal(String identificacion, String nombre,String apellidos, LocalDate fechaNacimiento,
-		String codigoPostal, String localidad, String pais, ArrayList <Nacionalidad>nacionalidades) {
-		
-		this.identificacion.set(identificacion);
-		this.nombre.set(nombre);
-		this.apellidos.set(apellidos);
-		this.fechaNacimiento.set(fechaNacimiento);
-		this.codigoPostal.set(codigoPostal);
-		this.localidad.set(localidad);
-		this.pais.set(pais);
-		this.nacionalidades.addAll(nacionalidades);
-	}
+
 	
 	
 	

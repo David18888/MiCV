@@ -9,11 +9,6 @@ private StringProperty direccion= new SimpleStringProperty();
 
 
 
-public Email() {}
-public Email(String direccion) {
-	this.direccion.set(direccion);
-}
-
 
 
 

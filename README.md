@@ -1,2 +1,2 @@
 # MiCV
- Aplicación para creación y gestión de CV usando JavaFX
+ Aplicación para la creación y gestión de CV usando JavaFX

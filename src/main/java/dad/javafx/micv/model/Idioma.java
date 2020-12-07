@@ -7,17 +7,7 @@ public class Idioma extends Conocimiento {
 
 	private StringProperty certificacion= new SimpleStringProperty();
 	
-	
-	
-	public Idioma() {
-		super();
-	}
-	
-	
-	public Idioma(String denominacion,String certificacion,Nivel nivel) {
-		super(denominacion,nivel);
-		this.certificacion.set(certificacion);
-	}
+
 	
 	
 	public final StringProperty certificacionProperty() {
